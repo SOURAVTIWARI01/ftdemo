@@ -67,4 +67,4 @@ jobs:
       run: |
         bundle exec fastlane android distribute --verbose
       env:
-        GOOGLE_APPLICATION_CREDENTIALS: serviceaccount.json         
+        GOOGLE_APPLICATION_CREDENTIALS: "./serviceaccount.json"         
