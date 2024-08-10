@@ -1,0 +1,55 @@
+
+
+name: Test, Build and Release apk
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:    
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ruby/setup-ruby@v1
+      with:
+         ruby-version: '3.3'
+         bundler-cache: true  
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0        
+    - name: Install Bundler
+      run: gem install bundler     
+    - name: Install gems
+      run: bundle install
+    - name: Set up Firebase CLI
+      run: |
+        curl -sL https://firebase.tools | bash  
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - name: Clone Flutter repository with master channel
+      uses: subosito/flutter-action@2783a3f08e1baf891508463f8c6653c258246225
+      with:
+        channel: master
+    # - run: flutter doctor -v
+    # - run: flutter pub get
+    # - run: flutter test
+    - run: flutter build apk --debug --split-per-abi
+    - name: Push APK to Releases
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "build/app/outputs/apk/debug/*.apk"
+        token: ${{ secrets.TOKEN }}
+        tag: v1.0.${{ github.run_number }}
+    - name: Run Fastlane
+      working-directory: ./android
+      run: |
+        bundle exec fastlane android distribute
+      env:
+        GOOGLE_APPLICATION_CREDENTIALS: serviceaccount.json         
