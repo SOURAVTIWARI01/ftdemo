@@ -13,11 +13,14 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 default_platform(:android)
+
 platform :android do
-    desc "Lane for distributing app using Firebase App Distributions"
-	lane :distribute do
-	  firebase_app_distribution(
-        app: "1:765228054269:android:45b8e4c4e2b85e3321f094",
-        
-      )
-    end
+  desc "Lane for distributing app using Firebase App Distributions"
+  lane :distribute do
+    firebase_app_distribution(
+      app: "1:765228054269:android:45b8e4c4e2b85e3321f094",
+      release_notes: "Release notes for this version", # Optional: Provide release notes
+      ipa_path: "build/app/outputs/apk/debug/app-arm64-v8a-debug.apk" # Replace with the path to your APK file
+    )
+  end
+end
