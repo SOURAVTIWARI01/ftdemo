@@ -1,2 +1,0 @@
-package_name("com.company.fluttergithubaction")
-json_key_file("serviceaccount.json")
