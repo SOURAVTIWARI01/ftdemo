@@ -53,6 +53,9 @@ jobs:
         artifacts: "build/app/outputs/apk/debug/*.apk"
         token: ${{ secrets.TOKEN }}
         tag: v1.0.${{ github.run_number }}
+    - name: ls -l
+      run: |
+        ls -ltrh      
     - name: Run Fastlane
       working-directory: ./android
       run: |
