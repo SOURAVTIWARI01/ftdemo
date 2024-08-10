@@ -49,12 +49,6 @@ jobs:
     # - run: flutter pub get
     # - run: flutter test
     - run: flutter build apk --debug
-    - name: ls -l
-      run: |
-        ls -ltrh
-        cd build/app/outputs/apk/debug
-        ls -ltrh
-    
     # - name: Push APK to Releases
     #   uses: ncipollo/release-action@v1
     #   with:
