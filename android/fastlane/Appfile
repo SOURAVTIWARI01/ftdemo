@@ -1,0 +1,2 @@
+package_name("io.flutter.examples.hello_world")
+json_key_file("serviceaccount.json")
