@@ -12,39 +12,11 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
-
 default_platform(:android)
-
 platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
-  end
-
-  desc "Submit a new beta build to Google Play"
-  lane :beta do
-    # TODO: Re-enable deferred components once https://github.com/flutter/gallery/issues/926 is fixed
-    sh "flutter build appbundle -v --no-deferred-components"
-    upload_to_play_store(
-      track: 'beta',
-      aab: '../build/app/outputs/bundle/release/app-release.aab',
-      json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
-      )
-  end
-
-  desc "Promote beta track to prod"
-  lane :promote_to_production do
-    upload_to_play_store(
-      track: 'beta',
-      track_promote_to: 'production',
-      skip_upload_changelogs: true,
-      json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
-      )
-  end
-
-  desc "firebase distribution"
-  lane :distribute do
-    build_android_app(
+    desc "My awesome app"
+    lane :distribute do
+        build_android_app(
     project_dir: ".",
     flavor: "production",
     build_type: "Release"
@@ -53,7 +25,5 @@ platform :android do
         release = firebase_app_distribution(
             app: "1:765228054269:android:45b8e4c4e2b85e3321f094"
         )
-      )
-  end
-
+    end
 end
