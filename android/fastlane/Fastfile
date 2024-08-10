@@ -21,7 +21,6 @@ platform :android do
       app: "1:765228054269:android:45b8e4c4e2b85e3321f094",
       android_artifact_type: "APK",
       apk_path: "../build/app/outputs/flutter-apk/app-debug.apk",
-      service_credentials_file: "serviceaccount.json",
       debug: true
     )
   end
