@@ -61,4 +61,5 @@ jobs:
         bundle exec fastlane android distribute --verbose 
       env:
         APP_ID: ${{ secrets.APP_ID }}
+        FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
       #   GOOGLE_APPLICATION_CREDENTIALS: "./serviceaccount.json"         
