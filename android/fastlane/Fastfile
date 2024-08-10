@@ -43,7 +43,7 @@ platform :android do
   end
 
   desc "firebase distribution"
-  lane :distribute do do
+  lane :distribute do
     build_android_app(
     project_dir: ".",
     flavor: "production",
