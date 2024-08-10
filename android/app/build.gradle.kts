@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "io.flutter.examples.hello_world"
+    namespace = "com.company.fluttergithubaction"
     compileSdk = flutter.compileSdkVersion
 
     compileOptions {
@@ -17,7 +17,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "io.flutter.examples.hello_world"
+        applicationId = "com.company.fluttergithubaction"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
