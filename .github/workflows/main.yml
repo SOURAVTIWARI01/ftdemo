@@ -40,16 +40,23 @@ jobs:
     # - run: flutter doctor -v
     # - run: flutter pub get
     # - run: flutter test
-    - run: flutter build apk --debug --split-per-abi
-    - name: Push APK to Releases
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: "build/app/outputs/apk/debug/*.apk"
-        token: ${{ secrets.TOKEN }}
-        tag: v1.0.${{ github.run_number }}
-    - name: Run Fastlane
-      working-directory: ./android
+    - run: flutter build apk --debug
+    - name: ls -l
       run: |
-        bundle exec fastlane android distribute --verbose
-      env:
-        GOOGLE_APPLICATION_CREDENTIALS: serviceaccount.json         
+        ls -ltrh
+        cd build/app/outputs/apk/debug
+        ls -ltrh
+
+    
+    # - name: Push APK to Releases
+    #   uses: ncipollo/release-action@v1
+    #   with:
+    #     artifacts: "build/app/outputs/apk/debug/*.apk"
+    #     token: ${{ secrets.TOKEN }}
+    #     tag: v1.0.${{ github.run_number }}
+    # - name: Run Fastlane
+    #   working-directory: ./android
+    #   run: |
+    #     bundle exec fastlane android distribute --verbose
+    #   env:
+    #     GOOGLE_APPLICATION_CREDENTIALS: serviceaccount.json         
