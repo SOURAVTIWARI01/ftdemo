@@ -18,8 +18,7 @@ platform :android do
     lane :distribute do
         build_android_app(
     project_dir: ".",
-    flavor: "production",
-    build_type: "Release"
+    build_type: "release"
         )
         # build_android_app is a built-in fastlane action.
         release = firebase_app_distribution(
