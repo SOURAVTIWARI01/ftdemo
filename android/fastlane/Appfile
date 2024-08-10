@@ -1,2 +1,2 @@
-package_name("io.flutter.examples.hello_world")
+package_name("com.company.fluttergithubaction")
 json_key_file("serviceaccount.json")
