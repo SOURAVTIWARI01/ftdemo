@@ -21,7 +21,8 @@ platform :android do
       app: "1:765228054269:android:45b8e4c4e2b85e3321f094",
       android_artifact_type: "APK",
       apk_path: "../build/app/outputs/flutter-apk/app-debug.apk",
-      debug: true
+      debug: true,
+      firebase_cli_token: "1//0gUzQDQlwN78OCgYIARAAGBASNwF-L9IrbALa8fTX5MPbXzGJ16VDRkIVmRBUWp-K0uazaYbTQkJr_7M8oaEtDklN-25F6lg8zPY"
     )
   end
 end
