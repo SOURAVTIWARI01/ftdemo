@@ -48,18 +48,29 @@ jobs:
     # - run: flutter doctor -v
     # - run: flutter pub get
     # - run: flutter test
-    - run: flutter build apk --debug
+    - run: |
+        flutter build apk --debug
+        flutter build ios --debug
     # - name: Push APK to Releases
     #   uses: ncipollo/release-action@v1
     #   with:
     #     artifacts: "build/app/outputs/apk/debug/*.apk"
     #     token: ${{ secrets.TOKEN }}
     #     tag: v1.0.${{ github.run_number }}    
-    - name: Run Fastlane
+    
+    - name: Run Fastlane apk
       working-directory: ./android
       run: |
         bundle exec fastlane android distribute --verbose 
       env:
         APP_ID: ${{ secrets.APP_ID }}
         FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
+
+    - name: Run Fastlane ios
+      working-directory: ./ios
+      run: |
+        bundle exec fastlane ios distribute_ios --verbose 
+      env:
+        APP_ID: ${{ secrets.APP_ID_IOS }}
+        FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}        
       #   GOOGLE_APPLICATION_CREDENTIALS: "./serviceaccount.json"         
