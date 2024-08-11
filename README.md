@@ -6,3 +6,7 @@ flutter run
 ```sh
 flutter run lib/arabic.dart
 ```
+## Three secrets are required
+APP_ID - FROM FIREBASE PROJECT GUI
+FIREBASE_CLI_CREDENTIAL:  FROM FIREBASE CLI LOGIN
+TOKEN: GITHUB PAT, TO PUSH ARTIFACTS INTO GITHUB WITH TAGS
