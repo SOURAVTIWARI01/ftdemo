@@ -1,0 +1,14 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Lane for distributing app using Firebase App Distributions"
+  lane :distribute_ios do
+    firebase_app_distribution(
+      app: ENV["APP_ID_IOS"],
+      android_artifact_type: "IPA",
+      apk_path: "../build/ios/iphoneos/Runner.app",
+      debug: true,
+      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"]
+    )
+  end
+end
