@@ -50,7 +50,6 @@ jobs:
     # - run: flutter test
     - run: |
         flutter build apk --debug
-        flutter build ios --debug
     # - name: Push APK to Releases
     #   uses: ncipollo/release-action@v1
     #   with:
@@ -65,12 +64,3 @@ jobs:
       env:
         APP_ID: ${{ secrets.APP_ID }}
         FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
-
-    - name: Run Fastlane ios
-      working-directory: ./ios
-      run: |
-        bundle exec fastlane ios distribute_ios --verbose 
-      env:
-        APP_ID: ${{ secrets.APP_ID_IOS }}
-        FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}        
-      #   GOOGLE_APPLICATION_CREDENTIALS: "./serviceaccount.json"         
