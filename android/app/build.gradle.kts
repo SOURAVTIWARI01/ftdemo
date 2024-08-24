@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.company.fluttergithubaction"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -18,8 +18,8 @@ android {
 
     defaultConfig {
         applicationId = "com.company.fluttergithubaction"
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdk = 21
+        targetSdk = 35
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
