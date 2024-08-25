@@ -51,18 +51,36 @@ jobs:
     - run: |
 
         flutter build ios --debug --no-codesign
-
-    - name: Archive iOS app
+    - name: Create .ipa file
       run: |
         mkdir -p build/ios/ipa
-        xcrun -sdk iphoneos PackageApplication -v build/ios/iphoneos/Runner.app -o build/ios/iphoneos/Runner.ipa
+        xcodebuild -workspace ios/Runner.xcworkspace \
+                   -scheme Runner \
+                   -configuration Release \
+                   -archivePath build/ios/iphoneos/Runner.xcarchive \
+                   archive
+        xcodebuild -exportArchive \
+                   -archivePath build/ios/iphoneos/Runner.xcarchive \
+                   -exportOptionsPlist ios/ExportOptions.plist \
+                   -exportPath build/ios/ipa
 
-    - name: Upload IPA
+    - name: Upload Build Artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: ipa
-        path: build/ios/iphoneos/Runner.ipa
-    # - name: Push ios to Releases
+        name: ios-app
+        path: build/ios/ipa        
+
+    # - name: Archive iOS app
+    #   run: |
+    #     mkdir -p build/ios/ipa
+    #     xcrun -sdk iphoneos PackageApplication -v build/ios/iphoneos/Runner.app -o build/ios/iphoneos/Runner.ipa
+
+    # - name: Upload IPA
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: ipa
+    #     path: build/ios/iphoneos/Runner.ipa
+    # # - name: Push ios to Releases
     #   uses: ncipollo/release-action@v1
     #   with:
     #     artifacts: "build/ios/iphoneos/*.app"
