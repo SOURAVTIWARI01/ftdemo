@@ -85,7 +85,15 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: ios-app
-        path: build/ios/iphoneos/Payload      
+        path: build/ios/iphoneos/Payload     
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+       repo_token: ${{ secrets.GITHUB_TOKEN }}
+       file: build/ios/iphoneos/FlutterIpaExport.ipa
+       tag: v2.0
+       overwrite: true
+       body: "This is first release"        
     - name: Run Fastlane ios
       working-directory: ./ios
       run: |
