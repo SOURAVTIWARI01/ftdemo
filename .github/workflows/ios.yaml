@@ -96,5 +96,5 @@ jobs:
       run: |
         bundle exec fastlane ios distribute_ios --verbose 
       env:
-        APP_ID: ${{ secrets.APP_ID_IOS }}
+        APP_ID_IOS: ${{ secrets.APP_ID_IOS }}
         FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}        
