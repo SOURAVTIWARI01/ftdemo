@@ -50,7 +50,7 @@ jobs:
     # - run: flutter test
     - run: |
 
-        flutter build ios --release
+        flutter build ios --debug --no-codesign
 
     - name: Archive iOS app
       run: |
