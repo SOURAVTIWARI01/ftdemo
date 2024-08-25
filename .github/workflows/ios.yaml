@@ -50,7 +50,18 @@ jobs:
     # - run: flutter test
     - run: |
 
-        flutter build ios --debug
+        flutter build ios --release
+
+    - name: Archive iOS app
+      run: |
+        mkdir -p build/ios/ipa
+        xcrun -sdk iphoneos PackageApplication -v build/ios/iphoneos/Runner.app -o build/ios/ipa/Runner.ipa
+
+    - name: Upload IPA
+      uses: actions/upload-artifact@v3
+      with:
+        name: ipa
+        path: build/ios/ipa/Runner.ipa
     # - name: Push ios to Releases
     #   uses: ncipollo/release-action@v1
     #   with:
