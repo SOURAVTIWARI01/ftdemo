@@ -57,7 +57,7 @@ jobs:
       run: |
         pwd
         ls -ltrh
-        ls -ltrh build/ios/ipa
+        ls -ltrh build/ios/iphoneos
         
     - name: Create .ipa file
       run: |
