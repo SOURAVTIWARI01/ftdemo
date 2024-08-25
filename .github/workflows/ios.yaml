@@ -67,46 +67,11 @@ jobs:
     - name: Zip output
       run: zip -qq -r -9 FlutterIpaExport.ipa Payload
       working-directory: build/ios/iphoneos        
-    # - name: Create .ipa file
-    #   run: |
-    #     mkdir -p build/ios/ipa
-    # - name: Zip output
-    #   run: zip -qq -r -9 Runner.app build/ios/ipa
-    #   working-directory: build/ios/ipa
-        
-        # xcodebuild -workspace ios/Runner.xcworkspace \
-        #            -scheme Runner \
-        #            -configuration Release \
-        #            -archivePath build/ios/iphoneos/Runner.xcarchive \
-        #            archive
-        # xcodebuild -exportArchive \
-        #            -archivePath build/ios/iphoneos/Runner.xcarchive \
-        #            -exportOptionsPlist ios/ExportOptions.plist \
-        #            -exportPath build/ios/ipa
-
-    # - name: Upload Build Artifacts
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: ios-app
-    #     path: build/ios/ipa        
-
-    # - name: Archive iOS app
-    #   run: |
-    #     mkdir -p build/ios/ipa
-    #     xcrun -sdk iphoneos PackageApplication -v build/ios/iphoneos/Runner.app -o build/ios/iphoneos/Runner.ipa
-
-    # - name: Upload IPA
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: ipa
-    #     path: build/ios/iphoneos/Runner.ipa
-    - name: Push ios to Releases
-      uses: ncipollo/release-action@v1
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
       with:
-        artifacts: "build/ios/ipa/*"
-        token: ${{ secrets.TOKEN }}
-        tag: v1.0.${{ github.run_number }}    
-
+        name: ios-app
+        path: build/ios/ipa        
     - name: Run Fastlane ios
       working-directory: ./ios
       run: |
@@ -114,4 +79,3 @@ jobs:
       env:
         APP_ID: ${{ secrets.APP_ID_IOS }}
         FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}        
-      #   GOOGLE_APPLICATION_CREDENTIALS: "./serviceaccount.json"         
