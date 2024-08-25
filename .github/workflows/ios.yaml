@@ -53,6 +53,11 @@ jobs:
         flutter build ios --debug --no-codesign
 
 ## output path is build/ios/iphoneos/Runner.app
+    - name: pwd and ls
+      run: |
+        pwd
+        ls -ltrh
+        ls -ltrh build/ios/ipa
         
     - name: Create .ipa file
       run: |
