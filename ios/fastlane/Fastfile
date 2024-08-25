@@ -4,7 +4,7 @@ platform :ios do
   desc "Lane for distributing app using Firebase App Distributions"
   lane :distribute_ios do
     firebase_app_distribution(
-      app: ENV["APP_ID_IOS"],
+      app: ENV["APP_ID"],
       ipa_path: "../build/ios/ipa/Payload/FlutterIpaExport.ipa",
       debug: true,
       firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"]
