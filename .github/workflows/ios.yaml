@@ -80,20 +80,17 @@ jobs:
         pwd
         ls -ltrh 
         ls -ltrh build/ios/iphoneos
-        ls -ltrh build/ios/iphoneos/Payload
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v3
       with:
         name: ios-app
         path: build/ios/iphoneos/Payload     
-    - name: Upload binaries to release
-      uses: svenstaro/upload-release-action@v2
+    - name: Push APK to Releases
+      uses: ncipollo/release-action@v1
       with:
-       repo_token: ${{ secrets.GITHUB_TOKEN }}
-       file: build/ios/iphoneos/FlutterIpaExport.ipa
-       tag: v2.0
-       overwrite: true
-       body: "This is first release"        
+        artifacts: "build/ios/iphoneos/*.ipa"
+        token: ${{ secrets.TOKEN }}
+        tag: v2.0.${{ github.run_number }}        
     - name: Run Fastlane ios
       working-directory: ./ios
       run: |
