@@ -21,13 +21,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0 
-        
-    # - name: Set Timezone
-    #   uses: szenius/set-timezone@v2.0
-    #   with:
-    #     timezoneLinux: "Asia/Kolkata"
-    #     timezoneMacos: "Asia/Kolkata"  
-        
+  
     - name: Install Bundler
       run: gem install bundler     
       
@@ -45,9 +39,6 @@ jobs:
       uses: subosito/flutter-action@2783a3f08e1baf891508463f8c6653c258246225
       with:
         channel: master
-    # - run: flutter doctor -v
-    # - run: flutter pub get
-    # - run: flutter test
     - run: |
 
         flutter build ios --debug --no-codesign
