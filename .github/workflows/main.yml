@@ -20,13 +20,7 @@ jobs:
          bundler-cache: true  
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 0 
-        
-    # - name: Set Timezone
-    #   uses: szenius/set-timezone@v2.0
-    #   with:
-    #     timezoneLinux: "Asia/Kolkata"
-    #     timezoneMacos: "Asia/Kolkata"  
+        fetch-depth: 0  
         
     - name: Install Bundler
       run: gem install bundler     
@@ -45,17 +39,14 @@ jobs:
       uses: subosito/flutter-action@2783a3f08e1baf891508463f8c6653c258246225
       with:
         channel: master
-    # - run: flutter doctor -v
-    # - run: flutter pub get
-    # - run: flutter test
     - run: |
         flutter build apk --debug
-    # - name: Push APK to Releases
-    #   uses: ncipollo/release-action@v1
-    #   with:
-    #     artifacts: "build/app/outputs/apk/debug/*.apk"
-    #     token: ${{ secrets.TOKEN }}
-    #     tag: v1.0.${{ github.run_number }}    
+    - name: Push APK to Releases
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "build/app/outputs/apk/debug/*.apk"
+        token: ${{ secrets.TOKEN }}
+        tag: v1.0.${{ github.run_number }}    
     
     - name: Run Fastlane apk
       working-directory: ./android
